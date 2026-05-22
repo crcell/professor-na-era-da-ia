@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocolo Professor do Futuro — na Era da IA</title>
+
+    <!-- ============================================================
+         META PIXEL — substitua SEU_PIXEL_ID pelo ID real (15 dígitos)
+         Para criar o pixel: business.facebook.com → Fontes de Dados → Pixels
+         ============================================================ -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'SEU_PIXEL_ID');
+    fbq('track', 'PageView');
+    </script>
+    <noscript>
+    <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=SEU_PIXEL_ID&ev=PageView&noscript=1"/>
+    </noscript>
+    <!-- FIM META PIXEL -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== VARIÁVEIS ===== */
+        :root {
+            --bg-primary: #0D0B1A;
+            --bg-secondary: #13112A;
+            --bg-card: #1A1830;
+            --border: rgba(255,255,255,0.07);
+            --border-gold: rgba(245,166,35,0.25);
+            --gold: #F5A623;
+            --gold-light: #FFD166;
+            --purple: #8B5CF6;
+            --purple-light: #A78BFA;
+            --green: #10B981;
+            --red-soft: #FC8181;
+            --white: #FFFFFF;
+            --text-secondary: #A8A8C4;
+            --text-muted: #6B6B8A;
+            --gradient-text: linear-gradient(135deg, #F5A623 0%, #FFD166 50%, #8B5CF6 100%);
+            --gradient-btn: linear-gradient(135deg, #F5A623 0%, #FF8C00 100%);
+            --gradient-card: linear-gradient(145deg, #1E1C35 0%, #13112A 100%);
+            --shadow-btn: 0 8px 32px rgba(245,166,35,0.35);
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+        }
+
+        /* ===== RESET ===== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; }
+
+        /* ===== UTILITÁRIOS ===== */
+        .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+        section { padding: 80px 0; }
+
+        .gradient-text {
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .text-gold { color: var(--gold); }
+        .text-green { color: var(--green); }
+        .text-red { color: var(--red-soft); }
+
+        /* ===== BOTÃO PRINCIPAL ===== */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-btn);
+            color: #000;
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            padding: 22px 44px;
+            border-radius: 100px;
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-btn);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 540px;
+            text-align: center;
+        }
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            transition: left 0.5s ease;
+        }
+        .btn-primary:hover::before { left: 100%; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 44px rgba(245,166,35,0.55); }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: var(--shadow-btn); }
+            50% { box-shadow: 0 8px 52px rgba(245,166,35,0.65); }
+        }
+        .btn-primary.pulse { animation: pulse 2.2s ease-in-out infinite; }
+
+        .btn-micro {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 12px;
+            display: block;
+        }
+        .cta-wrapper { display: flex; flex-direction: column; align-items: center; }
+
+        /* ===== BANNER TOPO ===== */
+        .top-banner {
+            background: linear-gradient(135deg, #6D28D9 0%, #4C1D95 100%);
+            padding: 13px 24px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .top-banner .badge {
+            background: var(--gold);
+            color: #000;
+            padding: 2px 12px;
+            border-radius: 100px;
+            font-weight: 800;
+            margin: 0 4px;
+            font-size: 13px;
+        }
+
+        /* ===== SECTION LABELS ===== */
+        .section-label {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 14px;
+        }
+        .section-title {
+            font-size: clamp(24px, 3.5vw, 40px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 80px 0 64px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -180px; left: 50%;
+            transform: translateX(-50%);
+            width: 900px; height: 900px;
+            background: radial-gradient(circle, rgba(139,92,246,0.11) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(139,92,246,0.12);
+            border: 1px solid rgba(139,92,246,0.28);
+            border-radius: 100px;
+            padding: 8px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--purple-light);
+            margin-bottom: 28px;
+        }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+        .hero-badge::before { content:'●'; color:var(--green); animation:blink 1.6s ease-in-out infinite; margin-right:2px; }
+
+        .hero-pre {
+            font-size: 15px;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 18px;
+            line-height: 1.7;
+        }
+        .hero h1 {
+            font-size: clamp(30px, 5vw, 58px);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+        .hero h2 {
+            font-size: clamp(20px, 3vw, 36px);
+            font-weight: 800;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+        .hero h3 {
+            font-size: clamp(18px, 2.5vw, 30px);
+            font-weight: 700;
+            color: var(--red-soft);
+            margin-bottom: 28px;
+        }
+        .hero-sub {
+            font-size: clamp(16px, 2vw, 19px);
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 680px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== BARRA DE PROVA ===== */
+        .proof-bar {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 28px 0;
+        }
+        .proof-bar-inner {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .proof-item { display:flex; flex-direction:column; align-items:center; gap:4px; }
+        .proof-number { font-size: 30px; font-weight: 900; color: var(--gold); }
+        .proof-label { font-size: 13px; color: var(--text-muted); text-align: center; }
+
+        /* ===== HISTÓRIA ===== */
+        .story-section { background: var(--bg-secondary); }
+        .story-card {
+            background: var(--gradient-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 44px;
+            position: relative;
+            overflow: hidden;
+        }
+        .story-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--gradient-btn);
+        }
+        .story-time-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(239,68,68,0.1);
+            border: 1px solid rgba(239,68,68,0.2);
+            border-radius: var(--radius-sm);
+            padding: 7px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--red-soft);
+            margin-bottom: 28px;
+        }
+        .story-body { font-size: 16px; line-height: 1.9; color: var(--text-secondary); }
+        .story-body p { margin-bottom: 20px; }
+        .story-body p:last-child { margin-bottom: 0; }
+        .story-highlight { color: var(--white); font-weight: 700; }
+        .story-quote {
+            border-left: 3px solid var(--gold);
+            padding-left: 22px;
+            margin: 28px 0;
+            font-style: italic;
+            color: var(--white);
+            font-size: 18px;
+            line-height: 1.7;
+        }
+        .story-turn {
+            color: var(--gold);
+            font-weight: 800;
+            font-size: 18px;
+        }
+
+        /* ===== DOR ===== */
+        .pain-section { background: var(--bg-primary); }
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+            margin-top: 32px;
+        }
+        .pain-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 22px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            transition: border-color 0.3s;
+        }
+        .pain-card:hover { border-color: rgba(239,68,68,0.28); }
+        .pain-icon {
+            width: 40px; height: 40px;
+            background: rgba(239,68,68,0.09);
+            border-radius: var(--radius-sm);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        .pain-text { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+        .pain-callout {
+            margin-top: 32px;
+            padding: 28px;
+            background: rgba(245,166,35,0.05);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-md);
+            text-align: center;
+            font-size: 17px;
+            color: var(--text-secondary);
+            line-height: 1.85;
+        }
+
+        /* ===== MECANISMO ===== */
+        .mechanism-section { background: var(--bg-secondary); }
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin: 32px 0;
+        }
+        .compare-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 28px;
+            border: 1px solid var(--border);
+        }
+        .compare-card.bad { border-color: rgba(239,68,68,0.18); }
+        .compare-card.good { border-color: rgba(16,185,129,0.2); }
+        .compare-tag {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+        .compare-tag.bad { color: var(--red-soft); }
+        .compare-tag.good { color: var(--green); }
+        .compare-prompt {
+            background: rgba(0,0,0,0.35);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            font-family: 'Courier New', monospace;
+            font-size: 12.5px;
+            color: var(--text-secondary);
+            line-height: 1.65;
+            margin-bottom: 14px;
+            border: 1px solid var(--border);
+        }
+        .compare-result {
+            font-size: 14px;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            line-height: 1.6;
+        }
+        .compare-result.bad { background: rgba(239,68,68,0.07); color: var(--red-soft); }
+        .compare-result.good { background: rgba(16,185,129,0.07); color: #6EE7B7; }
+
+        .p3-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin: 28px 0;
+        }
+        .p3-card {
+            background: var(--gradient-card);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            text-align: center;
+        }
+        .p3-number {
+            width: 48px; height: 48px;
+            background: var(--gradient-btn);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; font-weight: 900; color: #000;
+            margin: 0 auto 14px;
+        }
+        .p3-title { font-size: 15px; font-weight: 800; margin-bottom: 7px; }
+        .p3-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.55; }
+
+        /* ===== DEPOIMENTOS ===== */
+        .testimonials-section { background: var(--bg-primary); }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 18px;
+            margin-top: 40px;
+        }
+        .testimonial-card {
+            background: var(--gradient-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .testimonial-card:hover {
+            border-color: var(--border-gold);
+            transform: translateY(-4px);
+            box-shadow: 0 0 40px rgba(245,166,35,0.13);
+        }
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 14px; right: 22px;
+            font-size: 80px;
+            color: var(--gold);
+            opacity: 0.12;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        .testimonial-stars { color: var(--gold); font-size: 15px; margin-bottom: 14px; letter-spacing: 3px; }
+        .testimonial-text {
+            font-size: 15px;
+            line-height: 1.85;
+            color: var(--text-secondary);
+            margin-bottom: 22px;
+            font-style: italic;
+        }
+        .testimonial-text strong { color: var(--white); font-style: normal; }
+        .testimonial-author { display: flex; align-items: center; gap: 12px; }
+        .author-avatar {
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            background: var(--gradient-btn);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 16px; color: #000;
+            flex-shrink: 0;
+        }
+        .author-name { font-weight: 700; font-size: 14px; }
+        .author-role { font-size: 13px; color: var(--text-muted); }
+        .testimonial-tag {
+            display: inline-block;
+            background: rgba(16,185,129,0.09);
+            border: 1px solid rgba(16,185,129,0.2);
+            border-radius: 100px;
+            padding: 4px 13px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--green);
+            margin-top: 16px;
+        }
+
+        /* ===== OFERTA ===== */
+        .offer-section { background: var(--bg-secondary); }
+        .offer-items { display: flex; flex-direction: column; gap: 11px; margin: 32px 0; }
+        .offer-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: border-color 0.3s;
+        }
+        .offer-item:hover { border-color: var(--border-gold); }
+        .offer-item-icon {
+            font-size: 26px;
+            width: 50px; height: 50px;
+            background: rgba(245,166,35,0.07);
+            border-radius: var(--radius-sm);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .offer-item-content { flex: 1; }
+        .offer-item-name { font-weight: 700; font-size: 15px; margin-bottom: 3px; }
+        .offer-item-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+        .offer-item-price { font-size: 14px; font-weight: 700; color: var(--text-muted); text-decoration: line-through; flex-shrink: 0; }
+
+        .price-box {
+            background: var(--gradient-card);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            margin-top: 22px;
+        }
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+        .price-row:last-of-type { border-bottom: none; }
+        .price-final {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 22px;
+            margin-top: 6px;
+        }
+        .price-final-label { font-size: 17px; font-weight: 700; }
+        .price-final-value { font-size: 52px; font-weight: 900; color: var(--gold); line-height: 1; }
+
+        /* ===== GARANTIA ===== */
+        .guarantee-section { background: var(--bg-primary); }
+        .guarantee-card {
+            background: var(--gradient-card);
+            border: 1px solid rgba(16,185,129,0.22);
+            border-radius: var(--radius-xl);
+            padding: 52px 48px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .guarantee-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--green), #059669);
+        }
+        .guarantee-icon { font-size: 64px; margin-bottom: 20px; display: block; }
+        .guarantee-title { font-size: 30px; font-weight: 800; margin-bottom: 16px; }
+        .guarantee-text {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.85;
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        /* ===== FAQ ===== */
+        .faq-section { background: var(--bg-secondary); }
+        .faq-list { display: flex; flex-direction: column; gap: 11px; margin-top: 32px; }
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 22px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--white);
+            text-align: left;
+            gap: 16px;
+            transition: color 0.3s;
+        }
+        .faq-question:hover { color: var(--gold); }
+        .faq-arrow { color: var(--gold); font-size: 18px; flex-shrink: 0; transition: transform 0.3s; }
+        .faq-item.open .faq-arrow { transform: rotate(180deg); }
+        .faq-answer {
+            display: none;
+            padding: 20px 24px;
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            border-top: 1px solid var(--border);
+        }
+        .faq-item.open .faq-answer { display: block; }
+
+        /* ===== CTA FINAL ===== */
+        .final-cta { background: var(--bg-primary); position: relative; overflow: hidden; }
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            bottom: -200px; left: 50%;
+            transform: translateX(-50%);
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(245,166,35,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .urgency-bar {
+            background: rgba(239,68,68,0.1);
+            border: 1px solid rgba(239,68,68,0.2);
+            border-radius: var(--radius-md);
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 32px;
+            font-size: 15px;
+            font-weight: 600;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+        .urgency-bar .timer { color: var(--gold); font-weight: 900; font-size: 20px; }
+        .final-cta-card {
+            background: var(--gradient-card);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-xl);
+            padding: 60px 48px;
+            text-align: center;
+        }
+        .final-cta-title {
+            font-size: clamp(22px, 3.5vw, 40px);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+        .final-cta-sub {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.85;
+            max-width: 560px;
+            margin: 0 auto 32px;
+        }
+        .check-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+            margin: 0 auto 36px;
+            max-width: 460px;
+            text-align: left;
+        }
+        .check-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .check-list li::before {
+            content: '✓';
+            color: var(--green);
+            font-weight: 900;
+            font-size: 15px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* ===== P.S. ===== */
+        .ps-section { background: var(--bg-secondary); padding: 44px 0; }
+        .ps-card {
+            background: var(--bg-card);
+            border-left: 3px solid var(--gold);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            padding: 22px 28px;
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.85;
+            margin-bottom: 14px;
+        }
+        .ps-card strong { color: var(--white); }
+        .ps-label { font-weight: 900; color: var(--gold); margin-right: 6px; }
+
+        /* ===== RODAPÉ ===== */
+        footer {
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border);
+            padding: 32px 0;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        footer a { color: var(--text-muted); text-decoration: underline; }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 768px) {
+            section { padding: 56px 0; }
+            .story-card, .guarantee-card, .final-cta-card { padding: 28px 20px; }
+            .compare-grid, .p3-grid, .testimonials-grid { grid-template-columns: 1fr; }
+            .proof-bar-inner { gap: 24px; }
+            .offer-item { flex-direction: column; align-items: flex-start; }
+            .price-final-value { font-size: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- BANNER TOPO -->
+<div class="top-banner">
+    🔥 Preço de lançamento: <span class="badge">R$47</span> por apenas <span class="badge">72 horas</span> — Depois sobe para R$97
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-badge">Kit Digital para Professores(as) do Ensino Fundamental</div>
+        <p class="hero-pre">Para o professor que escolheu essa profissão por amor — e está com medo de ter perdido esse acreditar...</p>
+        <h1>Você Não Virou Professor(a)<br><span class="gradient-text">Para Passar as Noites no Computador.</span></h1>
+        <h2>Você Virou Professor(a) Para <span class="text-gold">Mudar Vidas.</span></h2>
+        <h3>Foi Isso Que Roubaram de Você.</h3>
+        <p class="hero-sub">
+            O kit que está devolvendo a alegria de ensinar para professores do ensino fundamental que chegaram ao limite — e não sabiam que existia uma saída de <strong style="color:var(--gold)">R$47</strong>.
+        </p>
+        <div class="cta-wrapper">
+            <a href="#oferta" class="btn-primary pulse">→ Quero Minha Vocação de Volta</a>
+            <span class="btn-micro">🔒 Acesso imediato &nbsp;·&nbsp; 🛡️ Garantia de 7 dias &nbsp;·&nbsp; Sem mensalidade</span>
+        </div>
+    </div>
+</section>
+
+<!-- BARRA DE PROVA SOCIAL -->
+<div class="proof-bar">
+    <div class="container">
+        <div class="proof-bar-inner">
+            <div class="proof-item"><span class="proof-number">5h+</span><span class="proof-label">economizadas por semana<br>em média</span></div>
+            <div class="proof-item"><span class="proof-number">30min</span><span class="proof-label">para planejar<br>a semana inteira</span></div>
+            <div class="proof-item"><span class="proof-number">50</span><span class="proof-label">prompts prontos<br>para usar hoje</span></div>
+            <div class="proof-item"><span class="proof-number">7 dias</span><span class="proof-label">de garantia<br>total</span></div>
+        </div>
+    </div>
+</div>
+
+<!-- A HISTÓRIA DA ANA -->
+<section class="story-section">
+    <div class="container">
+        <span class="section-label">📖 A história que mudou tudo</span>
+        <h2 class="section-title">São Paulo. Quinta-feira. <span class="text-gold">23h14.</span></h2>
+        <div class="story-card">
+            <div class="story-time-tag">🕐 Quinta-feira à noite — Semana de provas</div>
+            <div class="story-body">
+                <p>Ana tem 38 anos. Ensina Língua Portuguesa para o 4º ano há onze anos. Ela sabe o nome dos pais de todos os 28 alunos. Lembra do dia em que o Matheus leu sozinho pela primeira vez.</p>
+                <p>Mas nessa quinta-feira à noite, Ana não estava pensando no Matheus. Ela estava olhando para a tela do computador. <span class="story-highlight">Mais um plano de aula pela metade. Mais um relatório atrasado. Mais um comunicado que ela não conseguia terminar.</span></p>
+                <div class="story-quote">"Pela primeira vez em onze anos, eu pensei: eu não aguento mais."</div>
+                <p>Não os alunos. Não o ensinar. Não a vocação. <span class="story-highlight">A burocracia.</span> O planejamento interminável. As noites no computador enquanto a família dormia.</p>
+                <p>Ela foi ao quarto da filha. Olhou para ela dormindo — 7 anos, cabelos bagunçados, urso de pelúcia no braço. E foi <span class="story-highlight">chorar em silêncio no banheiro.</span> Não de tristeza. De culpa.</p>
+                <p class="story-turn">Três semanas depois, tudo mudou.</p>
+                <p>Uma colega mostrou o prompt certo. O plano de aula que levava 2 horas ficou pronto em <span class="story-highlight">23 minutos.</span> Ela foi para o quarto às 20h30. Seu marido perguntou se estava doente.</p>
+                <p>Hoje a Ana não trabalha nos fins de semana. O Matheus ganhou uma professor que chega na segunda com os olhos brilhando. A filha de 7 anos ganhou a mãe que merecia.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DOR -->
+<section class="pain-section">
+    <div class="container">
+        <span class="section-label">😔 Você reconhece isso?</span>
+        <h2 class="section-title">Quantas dessas situações são <span class="text-gold">sua realidade</span> toda semana?</h2>
+        <div class="pain-grid">
+            <div class="pain-card"><div class="pain-icon">😩</div><p class="pain-text">Planejamento que consome as noites e os fins de semana inteiros</p></div>
+            <div class="pain-card"><div class="pain-icon">💻</div><p class="pain-text">Tentou o ChatGPT e recebeu texto genérico que não servia pra nada</p></div>
+            <div class="pain-card"><div class="pain-icon">📋</div><p class="pain-text">Relatórios descritivos que levam dias e drenam toda sua energia</p></div>
+            <div class="pain-card"><div class="pain-icon">👨‍👩‍👧</div><p class="pain-text">Família que te vê sempre cansada, sempre no computador, sempre "trabalhando"</p></div>
+            <div class="pain-card"><div class="pain-icon">📱</div><p class="pain-text">Mensagens difíceis de pais que você não sabe como responder</p></div>
+            <div class="pain-card"><div class="pain-icon">📚</div><p class="pain-text">BNCC que você precisa incluir mas não encontra a habilidade certa</p></div>
+        </div>
+        <div class="pain-callout">
+            <strong style="color:var(--white)">Cada uma dessas situações</strong> acontece porque ninguém nunca te ensinou a usar a ferramenta certa, do jeito certo.<br>
+            Não é falta de dedicação. Não é falta de inteligência.<br>
+            <strong style="color:var(--gold)">É falta de um prompt.</strong>
+        </div>
+    </div>
+</section>
+
+<!-- MECANISMO -->
+<section class="mechanism-section">
+    <div class="container">
+        <span class="section-label">⚡ O Sistema</span>
+        <h2 class="section-title">Por que o ChatGPT falhou com você — e como o <span class="text-gold">Sistema 3P™</span> muda tudo</h2>
+        <div class="compare-grid">
+            <div class="compare-card bad">
+                <div class="compare-tag bad">❌ Sem o Sistema 3P™</div>
+                <div class="compare-prompt">"Crie uma aula sobre multiplicação para crianças"</div>
+                <div class="compare-result bad">Resultado: texto genérico, inútil, que poderia ter sido escrito para qualquer professor de qualquer país. Você fecha e volta ao modo manual.</div>
+            </div>
+            <div class="compare-card good">
+                <div class="compare-tag good">✅ Com o Sistema 3P™</div>
+                <div class="compare-prompt">"Sou professor de Mat. do 3º ano, 25 alunos, 8-9 anos. Plano de 50min sobre multiplicação com materiais concretos, inclua habilidade BNCC EF03MA07, passo a passo e avaliação formativa."</div>
+                <div class="compare-result good">Resultado: plano completo, aplicável amanhã, com BNCC incluída, adaptado para sua turma. Pronto em 47 segundos.</div>
+            </div>
+        </div>
+        <div class="p3-grid">
+            <div class="p3-card"><div class="p3-number">P1</div><div class="p3-title">PERFIL</div><div class="p3-desc">Quem sou, para quem é, em que contexto e realidade</div></div>
+            <div class="p3-card"><div class="p3-number">P2</div><div class="p3-title">PEDIDO</div><div class="p3-desc">Exatamente o que preciso, em qual formato e estrutura</div></div>
+            <div class="p3-card"><div class="p3-number">P3</div><div class="p3-title">PARÂMETROS</div><div class="p3-desc">Duração, recursos, nível, BNCC e todas as limitações</div></div>
+        </div>
+        <p style="text-align:center; font-size:16px; color:var(--text-secondary);">
+            O <strong style="color:var(--white)">Banco ProfesorIA</strong> tem 50 prompts com o Sistema 3P™ <strong style="color:var(--gold)">já aplicado.</strong>
+            Você não aprende a usar IA. Você <strong style="color:var(--white)">usa a IA. Hoje.</strong>
+        </p>
+    </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="testimonials-section">
+    <div class="container">
+        <span class="section-label">💬 Professores(as) que já usam</span>
+        <h2 class="section-title">O que mudou na vida deles — <span class="text-gold">em palavras deles</span></h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Fiz os relatórios descritivos de 31 alunos em uma tarde. <strong>UMA TARDE.</strong> Nos últimos 8 anos eu gastava uma semana inteira nisso. Esse ano, na sexta da entrega, fui buscar minha filha na escola, fui ao mercado e cozinhei o jantar."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">F</div>
+                    <div><div class="author-name">Fernanda C.</div><div class="author-role">Professora do 2º ano · Belo Horizonte/MG</div></div>
+                </div>
+                <span class="testimonial-tag">✓ 8 anos de sofrimento. Uma tarde para resolver.</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Estava prestes a pedir exoneração. Não pela sala de aula — eu amo meus alunos. Era a burocracia me destruindo por dentro. Comprei o kit numa sexta-feira desesperada. Na segunda-feira, cheguei com o <strong>bimestre inteiro planejado.</strong>"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">J</div>
+                    <div><div class="author-name">Juliana R.</div><div class="author-role">Professora Fund. II · Porto Alegre/RS</div></div>
+                </div>
+                <span class="testimonial-tag">✓ Estava desistindo. Ainda está na sala de aula.</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Minha filha de 9 anos me perguntou se eu tinha tirado férias. Eu não tinha. Só tinha parado de levar trabalho para casa no fim de semana. <strong>Ela não conhecia a versão descansada da mãe dela.</strong> Isso me partiu o coração — de um jeito bom."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">R</div>
+                    <div><div class="author-name">Rosana P.</div><div class="author-role">Professora de Matemática · Fortaleza/CE</div></div>
+                </div>
+                <span class="testimonial-tag">✓ Filha que não conhecia a mãe descansada.</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Tentei o ChatGPT sozinha por três meses. Resultado sempre inútil. Com o kit, copiei o primeiro prompt, preenchi os campos, apertei Enter. O plano era melhor do que os que eu fazia em 2 horas. <strong>Fiquei com raiva de mim mesma por ter esperado tanto tempo.</strong>"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">D</div>
+                    <div><div class="author-name">Débora M.</div><div class="author-role">Língua Portuguesa 4º/5º ano · São Paulo/SP</div></div>
+                </div>
+                <span class="testimonial-tag">✓ Com raiva de ter esperado tanto. Melhor prova.</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- OFERTA -->
+<section class="offer-section" id="oferta">
+    <div class="container">
+        <span class="section-label">🎁 O que você recebe</span>
+        <h2 class="section-title">Tudo que você precisa para nunca mais<br><span class="text-gold">perder um domingo planejando aulas</span></h2>
+        <div class="offer-items">
+            <div class="offer-item">
+                <div class="offer-item-icon">📘</div>
+                <div class="offer-item-content">
+                    <div class="offer-item-name">Ebook "Protocolo Professor do Futuro" — 80+ páginas</div>
+                    <div class="offer-item-desc">Método completo do zero ao planejamento semanal. Sistema 3P™, planos de aula, avaliações, relatórios, BNCC, Protocolo 30.</div>
+                </div>
+                <div class="offer-item-price">R$97</div>
+            </div>
+            <div class="offer-item">
+                <div class="offer-item-icon">⚡</div>
+                <div class="offer-item-content">
+                    <div class="offer-item-name">Banco ProfesorIA — 50 Prompts Prontos</div>
+                    <div class="offer-item-desc">6 categorias: planejamento, atividades, avaliações, comunicação com pais, documentação, BNCC por área.</div>
+                </div>
+                <div class="offer-item-price">R$67</div>
+            </div>
+            <div class="offer-item">
+                <div class="offer-item-icon">🗓️</div>
+                <div class="offer-item-content">
+                    <div class="offer-item-name">Protocolo 30 — Sistema Semanal</div>
+                    <div class="offer-item-desc">30 minutos por semana. Planejamento completo. Fim da crise de domingo. Para sempre.</div>
+                </div>
+                <div class="offer-item-price">R$47</div>
+            </div>
+            <div class="offer-item">
+                <div class="offer-item-icon">📋</div>
+                <div class="offer-item-content">
+                    <div class="offer-item-name">Kit Aula Pronta — 5 Planos Editáveis</div>
+                    <div class="offer-item-desc">Use amanhã ou como modelo. Completos, com BNCC. Word + Google Docs.</div>
+                </div>
+                <div class="offer-item-price">R$67</div>
+            </div>
+            <div class="offer-item">
+                <div class="offer-item-icon">📚</div>
+                <div class="offer-item-content">
+                    <div class="offer-item-name">Mapa BNCC por Disciplina e Ano</div>
+                    <div class="offer-item-desc">Cada habilidade com o prompt correspondente. Nunca mais abre o documento de 600 páginas.</div>
+                </div>
+                <div class="offer-item-price">R$47</div>
+            </div>
+            <div class="offer-item">
+                <div class="offer-item-icon">🚀</div>
+                <div class="offer-item-content">
+                    <div class="offer-item-name">Guia "Primeiros 30 Minutos"</div>
+                    <div class="offer-item-desc">Resultado no primeiro uso. Para quem nunca abriu o ChatGPT na vida.</div>
+                </div>
+                <div class="offer-item-price">R$27</div>
+            </div>
+            <div class="offer-item" style="border: 1px solid rgba(16,185,129,0.35); background: linear-gradient(145deg, rgba(16,185,129,0.06) 0%, rgba(245,166,35,0.04) 100%); position:relative; overflow:hidden;">
+                <div style="position:absolute;top:0;left:0;background:linear-gradient(135deg,#10B981,#059669);color:#000;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:4px 14px;border-radius:0 0 10px 0;">★ BÔNUS GRÁTIS</div>
+                <div class="offer-item-icon" style="margin-top:8px;">📚</div>
+                <div class="offer-item-content" style="margin-top:4px;">
+                    <div class="offer-item-name" style="color:#34D399;">Pack Disciplinar — 50 Prompts por Matéria</div>
+                    <div class="offer-item-desc">Português (12) · Matemática (12) · Ciências (8) · História (7) · Geografia (7) · Artes (4). Um prompt para cada conteúdo do ano — organizado exatamente como o seu planejamento.</div>
+                </div>
+                <div class="offer-item-price" style="text-decoration:line-through;color:var(--text-muted);font-size:14px;">R$67</div>
+            </div>
+        </div>
+        <div class="price-box">
+            <div class="price-row"><span>Valor total dos itens</span><span style="text-decoration:line-through; color:var(--text-muted)">R$409</span></div>
+            <div class="price-row"><span>Você economiza</span><span style="color:var(--green); font-weight:700">R$362 (88% off)</span></div>
+            <div class="price-final">
+                <span class="price-final-label">Seu preço hoje</span>
+                <span class="price-final-value">R$47</span>
+            </div>
+            <div style="margin-top:32px;" class="cta-wrapper">
+                <a href="#comprar" class="btn-primary pulse">→ Quero Meus Domingos de Volta — R$47</a>
+                <span class="btn-micro">🔒 Pagamento seguro &nbsp;·&nbsp; 📧 Acesso imediato &nbsp;·&nbsp; 🛡️ Garantia Domingo Livre 7 dias</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GARANTIA -->
+<section class="guarantee-section">
+    <div class="container">
+        <div class="guarantee-card">
+            <span class="guarantee-icon">🛡️</span>
+            <h2 class="guarantee-title">Garantia <span class="text-green">Domingo Livre</span> — 7 Dias</h2>
+            <p class="guarantee-text">
+                Use o kit por uma semana inteira. Se você não recuperar pelo menos um domingo — se não economizar pelo menos 2 horas de trabalho na primeira semana —
+                <strong style="color:var(--white)">devolvo cada centavo dos seus R$47. Sem formulário. Sem explicação. Sem esperar.</strong>
+                <br><br>
+                Você tem tudo a ganhar. O risco é completamente meu.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+    <div class="container">
+        <span class="section-label">❓ Dúvidas frequentes</span>
+        <h2 class="section-title">O que professores <span class="text-gold">sempre perguntam</span></h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Já tentei o ChatGPT e não funcionou. Por que seria diferente? <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer">Porque antes você usava prompts genéricos. O Banco ProfesorIA tem 50 prompts com o Sistema 3P™ aplicado — escritos especificamente para professores do ensino fundamental, com todos os campos que fazem o resultado ser aplicável de verdade. É uma experiência completamente diferente.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Sou péssima com tecnologia. Isso é para mim? <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer">Especialmente para você. Não tem configuração, não tem plataforma para aprender. Se você sabe copiar e colar, você usa hoje. O Guia "Primeiros 30 Minutos" garante resultado no primeiro uso — antes de ler qualquer outra coisa.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Funciona para todas as disciplinas e anos? <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer">Sim. Os prompts cobrem do 1º ao 9º ano, todas as disciplinas do currículo nacional, com habilidades BNCC específicas por área.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Preciso pagar pelo ChatGPT? <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer">Não. A versão gratuita funciona perfeitamente para tudo que está no kit. Você não precisa nem de cartão de crédito para criar a conta.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Como vou receber o material? <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer">Imediatamente após o pagamento, você recebe um email com o link de download. PDF e arquivos editáveis. Funciona em qualquer dispositivo — celular, tablet ou computador.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Qual a diferença desse kit para outros cursos de IA? <span class="faq-arrow">▼</span></button>
+                <div class="faq-answer">Os outros ensinam IA. Este te dá a IA já pronta para usar. Sem teoria, sem videoaula de 3 horas, sem plataforma para aprender. Você recebe os prompts prontos e usa hoje.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final-cta" id="comprar">
+    <div class="container">
+        <div class="urgency-bar">
+            ⏰ Preço de lançamento: <span class="timer">R$47</span> — Encerra em <span class="timer" id="countdown">71:59:59</span>
+        </div>
+        <div class="final-cta-card">
+            <h2 class="final-cta-title">
+                Daqui a uma semana, você pode ser<br>
+                <span class="gradient-text">o professor que descansou no fim de semana.</span>
+            </h2>
+            <p class="final-cta-sub">
+                Você não escolheu ser professor para ser escravo do planejamento. Você escolheu porque acreditava que uma sala de aula pode mudar a vida de uma criança.
+                <strong style="color:var(--white)">Esse acreditar nunca foi embora. Ele só estava sufocado.</strong>
+            </p>
+            <ul class="check-list">
+                <li>Planos de aula prontos em 30 minutos</li>
+                <li>50 prompts prontos para usar hoje</li>
+                <li>Relatórios descritivos em uma tarde</li>
+                <li>Fins de semana de volta para você e sua família</li>
+                <li>Garantia Domingo Livre de 7 dias — risco zero</li>
+            </ul>
+            <div class="cta-wrapper">
+                <a href="#" class="btn-primary pulse" style="font-size:19px; padding:24px 48px;">→ Quero Minha Vocação de Volta — R$47 Agora</a>
+                <span class="btn-micro">🔒 Pagamento seguro &nbsp;·&nbsp; 📧 Acesso imediato &nbsp;·&nbsp; 🛡️ Garantia 7 dias &nbsp;·&nbsp; Sem mensalidade</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- P.S. -->
+<section class="ps-section">
+    <div class="container">
+        <div class="ps-card"><span class="ps-label">P.S.</span> Você sabe o que a Ana me disse quando eu perguntei o que tinha mudado de verdade? <strong>"Eu parei de me sentir culpada por ser professor."</strong> Pense nisso.</div>
+        <div class="ps-card"><span class="ps-label">P.P.S.</span> Esse preço de <strong>R$47</strong> existe por 72 horas. Depois vai para R$97 e assim fica. Não é truque — é o preço de quem confiou primeiro.</div>
+        <div class="ps-card"><span class="ps-label">P.P.P.S.</span> <strong>Garantia Domingo Livre: 7 dias, dinheiro de volta, zero perguntas.</strong> O risco é completamente meu. A única coisa que você perde ao não tentar é o próximo domingo.</div>
+    </div>
+</section>
+
+<!-- RODAPÉ -->
+<footer>
+    <div class="container">
+        <p style="margin-bottom:8px; font-size:15px; color:var(--text-secondary);">
+            <strong style="color:var(--gold)">Protocolo Professor do Futuro™</strong> — na Era da IA &nbsp;·&nbsp; Por <strong style="color:var(--text-secondary)">César Carvalho</strong>
+        </p>
+        <p>© 2026 &nbsp;·&nbsp; <a href="#">Política de Privacidade</a> &nbsp;·&nbsp; <a href="#">Termos de Uso</a> &nbsp;·&nbsp; <a href="#">Suporte</a></p>
+        <p style="margin-top:8px; font-size:12px;">Produto digital entregue por email imediatamente após o pagamento. Este site não é afiliado ao ChatGPT ou OpenAI.</p>
+    </div>
+</footer>
+
+<script>
+    // FAQ accordion
+    function toggleFaq(btn) {
+        btn.parentElement.classList.toggle('open');
+    }
+
+    // Countdown timer (persiste no localStorage)
+    (function() {
+        const KEY = 'prof_ia_deadline';
+        let end = parseInt(localStorage.getItem(KEY));
+        if (!end || end < Date.now()) {
+            end = Date.now() + 72 * 60 * 60 * 1000;
+            localStorage.setItem(KEY, end);
+        }
+        function tick() {
+            const diff = Math.max(0, end - Date.now());
+            const h = Math.floor(diff / 3600000);
+            const m = Math.floor((diff % 3600000) / 60000);
+            const s = Math.floor((diff % 60000) / 1000);
+            const pad = n => String(n).padStart(2, '0');
+            const el = document.getElementById('countdown');
+            if (el) el.textContent = pad(h) + ':' + pad(m) + ':' + pad(s);
+        }
+        tick();
+        setInterval(tick, 1000);
+    })();
+
+    // Smooth scroll para âncoras
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const target = document.querySelector(a.getAttribute('href'));
+            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        });
+    });
+</script>
+</body>
+</html>
