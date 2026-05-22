@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professor na Era da IA — A Professora ao Lado da Sua Escola Já Sabe</title>
+
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'SEU_PIXEL_ID');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=SEU_PIXEL_ID&ev=PageView&noscript=1"/></noscript>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary:   #0D0B1A;
+            --bg-secondary: #13112A;
+            --bg-card:      #1A1830;
+            --border:       rgba(255,255,255,0.07);
+            --border-gold:  rgba(245,166,35,0.25);
+            --gold:         #F5A623;
+            --gold-light:   #FFD166;
+            --purple:       #8B5CF6;
+            --purple-light: #A78BFA;
+            --green:        #10B981;
+            --red-soft:     #FC8181;
+            --white:        #FFFFFF;
+            --text-secondary:#A8A8C4;
+            --text-muted:   #6B6B8A;
+            --gradient-text: linear-gradient(135deg, #F5A623 0%, #FFD166 50%, #8B5CF6 100%);
+            --gradient-btn:  linear-gradient(135deg, #F5A623 0%, #FF8C00 100%);
+            --gradient-card: linear-gradient(145deg, #1E1C35 0%, #13112A 100%);
+            --shadow-btn:    0 8px 32px rgba(245,166,35,0.35);
+            --radius-sm: 8px; --radius-md: 16px; --radius-lg: 24px; --radius-xl: 32px;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--white); line-height: 1.6; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+        section { padding: 80px 0; }
+        .gradient-text { background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .text-gold { color: var(--gold); }
+        .text-green { color: var(--green); }
+        .text-red { color: var(--red-soft); }
+
+        /* ===== BOTÃO ===== */
+        .btn-primary {
+            display: inline-flex; align-items: center; justify-content: center;
+            background: var(--gradient-btn); color: #000;
+            font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 800;
+            padding: 22px 44px; border-radius: 100px; border: none; cursor: pointer;
+            box-shadow: var(--shadow-btn); transition: all 0.3s ease;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            position: relative; overflow: hidden; width: 100%; max-width: 560px; text-align: center;
+        }
+        .btn-primary::before { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent); transition:left .5s; }
+        .btn-primary:hover::before { left:100%; }
+        .btn-primary:hover { transform:translateY(-3px); box-shadow:0 14px 44px rgba(245,166,35,0.55); }
+        @keyframes pulse { 0%,100%{box-shadow:var(--shadow-btn)} 50%{box-shadow:0 8px 52px rgba(245,166,35,0.65)} }
+        .btn-primary.pulse { animation:pulse 2.2s ease-in-out infinite; }
+        .btn-micro { font-size:13px; color:var(--text-muted); text-align:center; margin-top:12px; display:block; }
+        .cta-wrapper { display:flex; flex-direction:column; align-items:center; }
+
+        /* ===== URGENT BANNER ===== */
+        .top-banner {
+            background: linear-gradient(135deg, #7C2D12 0%, #9A3412 100%);
+            padding: 14px 24px; text-align: center; font-size: 14px; font-weight: 600;
+            border-bottom: 1px solid rgba(245,166,35,0.2);
+        }
+        .top-banner .badge { background:var(--gold); color:#000; padding:2px 12px; border-radius:100px; font-weight:800; margin:0 4px; font-size:13px; }
+
+        /* ===== LABELS & TÍTULOS ===== */
+        .section-label { display:inline-block; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--gold); margin-bottom:14px; }
+        .section-title { font-size:clamp(24px,3.5vw,40px); font-weight:800; line-height:1.2; margin-bottom:24px; }
+
+        /* ===== HERO ===== */
+        .hero { padding:80px 0 64px; text-align:center; position:relative; overflow:hidden; }
+        .hero::before { content:''; position:absolute; top:-200px; left:50%; transform:translateX(-50%); width:1000px; height:1000px; background:radial-gradient(circle,rgba(139,92,246,0.1) 0%,transparent 60%); pointer-events:none; }
+        .hero-eyebrow {
+            display:inline-flex; align-items:center; gap:8px;
+            background:rgba(245,166,35,0.08); border:1px solid rgba(245,166,35,0.22);
+            border-radius:100px; padding:8px 20px; font-size:13px; font-weight:600;
+            color:var(--gold); margin-bottom:28px;
+        }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+        .hero-eyebrow::before { content:'●'; color:var(--green); animation:blink 1.6s ease-in-out infinite; margin-right:2px; }
+        .hero-pre { font-size:15px; color:var(--text-muted); font-style:italic; margin-bottom:20px; line-height:1.75; max-width:700px; margin-left:auto; margin-right:auto; }
+        .hero h1 { font-size:clamp(28px,5vw,60px); font-weight:900; line-height:1.05; letter-spacing:-1.5px; margin-bottom:14px; }
+        .hero h2 { font-size:clamp(18px,2.8vw,32px); font-weight:800; margin-bottom:10px; line-height:1.25; }
+        .hero h3 { font-size:clamp(16px,2.2vw,24px); font-weight:700; color:var(--text-secondary); margin-bottom:32px; }
+        .hero-sub { font-size:clamp(16px,2vw,19px); color:var(--text-secondary); line-height:1.85; margin-bottom:40px; max-width:680px; margin-left:auto; margin-right:auto; }
+
+        /* ===== MINI PROVA (logo após hero) ===== */
+        .hero-proof {
+            background: var(--bg-card); border: 1px solid var(--border-gold);
+            border-radius: var(--radius-lg); padding: 28px 36px;
+            margin-top: 48px; display: flex; align-items: center; gap: 24px;
+            text-align: left;
+        }
+        .hero-proof-avatar { width:56px; height:56px; border-radius:50%; background:var(--gradient-btn); display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:900; color:#000; flex-shrink:0; }
+        .hero-proof-text { font-size:15px; color:var(--text-secondary); line-height:1.75; font-style:italic; flex:1; }
+        .hero-proof-text strong { color:var(--white); font-style:normal; }
+        .hero-proof-author { font-size:13px; color:var(--text-muted); margin-top:8px; font-style:normal; }
+        .hero-proof-stars { color:var(--gold); font-size:13px; letter-spacing:2px; margin-bottom:6px; }
+
+        /* ===== PROOF BAR ===== */
+        .proof-bar { background:var(--bg-card); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:28px 0; }
+        .proof-bar-inner { display:flex; justify-content:center; gap:40px; flex-wrap:wrap; }
+        .proof-item { display:flex; flex-direction:column; align-items:center; gap:4px; }
+        .proof-number { font-size:30px; font-weight:900; color:var(--gold); }
+        .proof-label { font-size:13px; color:var(--text-muted); text-align:center; }
+
+        /* ===== HISTÓRIA: DUAS PROFESSORAS ===== */
+        .story-section { background:var(--bg-secondary); }
+        .story-card { background:var(--gradient-card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:44px; position:relative; overflow:hidden; }
+        .story-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--gradient-btn); }
+        .story-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(139,92,246,0.1); border:1px solid rgba(139,92,246,0.22); border-radius:var(--radius-sm); padding:7px 16px; font-size:13px; font-weight:600; color:var(--purple-light); margin-bottom:28px; }
+        .story-body { font-size:16px; line-height:1.95; color:var(--text-secondary); }
+        .story-body p { margin-bottom:20px; }
+        .story-body p:last-child { margin-bottom:0; }
+        .story-hl { color:var(--white); font-weight:700; }
+        .story-quote { border-left:3px solid var(--gold); padding-left:22px; margin:28px 0; font-style:italic; color:var(--white); font-size:18px; line-height:1.7; }
+        .story-gold { color:var(--gold); font-weight:800; font-size:18px; }
+
+        /* Contraste: dois mundos */
+        .two-worlds { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:32px 0; }
+        .world-card { border-radius:var(--radius-md); padding:26px; border:1px solid; }
+        .world-card.dark { background:rgba(239,68,68,0.04); border-color:rgba(239,68,68,0.18); }
+        .world-card.light { background:rgba(16,185,129,0.04); border-color:rgba(16,185,129,0.2); }
+        .world-time { font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; }
+        .world-time.dark { color:var(--red-soft); }
+        .world-time.light { color:var(--green); }
+        .world-text { font-size:14px; color:var(--text-secondary); line-height:1.7; }
+
+        /* ===== DOR ===== */
+        .pain-section { background:var(--bg-primary); }
+        .pain-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; margin-top:32px; }
+        .pain-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-md); padding:22px; display:flex; align-items:flex-start; gap:14px; transition:border-color .3s; }
+        .pain-card:hover { border-color:rgba(239,68,68,0.28); }
+        .pain-icon { width:40px; height:40px; background:rgba(239,68,68,0.09); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+        .pain-text { font-size:15px; color:var(--text-secondary); line-height:1.6; }
+        .pain-callout { margin-top:32px; padding:28px; background:rgba(245,166,35,0.05); border:1px solid var(--border-gold); border-radius:var(--radius-md); text-align:center; font-size:17px; color:var(--text-secondary); line-height:1.9; }
+
+        /* ===== DEMO PROMPT ===== */
+        .demo-section { background:var(--bg-secondary); }
+        .demo-label { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:10px; display:flex; align-items:center; gap:7px; }
+        .demo-label.before { color:var(--red-soft); }
+        .demo-label.after  { color:var(--green); }
+        .demo-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:28px 0; }
+        .demo-card { background:var(--bg-card); border-radius:var(--radius-md); padding:24px; border:1px solid var(--border); }
+        .demo-card.before { border-color:rgba(239,68,68,0.18); }
+        .demo-card.after  { border-color:rgba(16,185,129,0.22); }
+        .demo-prompt { background:rgba(0,0,0,0.4); border-radius:var(--radius-sm); padding:16px; font-family:'Courier New',monospace; font-size:12.5px; color:var(--text-secondary); line-height:1.65; margin-bottom:14px; border:1px solid var(--border); }
+        .demo-result { font-size:13.5px; padding:12px 16px; border-radius:var(--radius-sm); line-height:1.65; }
+        .demo-result.bad  { background:rgba(239,68,68,0.07); color:var(--red-soft); }
+        .demo-result.good { background:rgba(16,185,129,0.07); color:#6EE7B7; }
+        .demo-timer { display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:700; margin-top:10px; }
+        .demo-timer.bad  { color:var(--red-soft); }
+        .demo-timer.good { color:var(--green); }
+
+        /* ===== MECANISMO P3 ===== */
+        .mechanism-section { background:var(--bg-primary); }
+        .p3-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:28px 0; }
+        .p3-card { background:var(--gradient-card); border:1px solid var(--border-gold); border-radius:var(--radius-md); padding:26px; text-align:center; }
+        .p3-number { width:50px; height:50px; background:var(--gradient-btn); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:900; color:#000; margin:0 auto 14px; }
+        .p3-title { font-size:15px; font-weight:800; margin-bottom:8px; }
+        .p3-desc { font-size:13px; color:var(--text-secondary); line-height:1.6; }
+
+        /* ===== DEPOIMENTOS ===== */
+        .testimonials-section { background:var(--bg-secondary); }
+        .testimonials-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(360px,1fr)); gap:18px; margin-top:40px; }
+        .testimonial-card { background:var(--gradient-card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:32px; position:relative; transition:all .3s; }
+        .testimonial-card:hover { border-color:var(--border-gold); transform:translateY(-4px); box-shadow:0 0 40px rgba(245,166,35,0.13); }
+        .testimonial-card::before { content:'"'; position:absolute; top:14px; right:22px; font-size:80px; color:var(--gold); opacity:.12; font-family:Georgia,serif; line-height:1; }
+        .testimonial-stars { color:var(--gold); font-size:15px; margin-bottom:14px; letter-spacing:3px; }
+        .testimonial-text { font-size:15px; line-height:1.85; color:var(--text-secondary); margin-bottom:22px; font-style:italic; }
+        .testimonial-text strong { color:var(--white); font-style:normal; }
+        .testimonial-author { display:flex; align-items:center; gap:12px; }
+        .author-avatar { width:44px; height:44px; border-radius:50%; background:var(--gradient-btn); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:16px; color:#000; flex-shrink:0; }
+        .author-name { font-weight:700; font-size:14px; }
+        .author-role { font-size:13px; color:var(--text-muted); }
+        .testimonial-tag { display:inline-block; background:rgba(16,185,129,0.09); border:1px solid rgba(16,185,129,0.2); border-radius:100px; padding:4px 13px; font-size:12px; font-weight:600; color:var(--green); margin-top:16px; }
+
+        /* ===== OFERTA ===== */
+        .offer-section { background:var(--bg-primary); }
+        .offer-items { display:flex; flex-direction:column; gap:14px; margin:32px 0; }
+        .offer-item { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-md); padding:24px 28px; display:flex; align-items:center; gap:18px; transition:border-color .3s; }
+        .offer-item:hover { border-color:var(--border-gold); }
+        .offer-item.main-product { border-color:rgba(245,166,35,0.3); background:linear-gradient(135deg,rgba(245,166,35,0.05) 0%,var(--bg-card) 100%); }
+        .offer-item.bonus { border-color:rgba(139,92,246,0.25); }
+        .offer-item-icon { font-size:28px; width:54px; height:54px; background:rgba(245,166,35,0.08); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+        .offer-item.bonus .offer-item-icon { background:rgba(139,92,246,0.08); }
+        .offer-item-content { flex:1; }
+        .offer-item-badge { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:5px; }
+        .offer-item.main-product .offer-item-badge { color:var(--gold); }
+        .offer-item.bonus .offer-item-badge { color:var(--purple-light); }
+        .offer-item-name { font-weight:800; font-size:16px; margin-bottom:5px; }
+        .offer-item-desc { font-size:13px; color:var(--text-muted); line-height:1.55; }
+        .offer-item-price { font-size:14px; font-weight:700; color:var(--text-muted); text-decoration:line-through; flex-shrink:0; white-space:nowrap; }
+
+        .price-box { background:var(--gradient-card); border:1px solid var(--border-gold); border-radius:var(--radius-lg); padding:36px; margin-top:24px; }
+        .price-row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--border); font-size:15px; color:var(--text-secondary); }
+        .price-row:last-of-type { border-bottom:none; }
+        .price-final { display:flex; justify-content:space-between; align-items:center; padding-top:22px; margin-top:6px; }
+        .price-final-label { font-size:17px; font-weight:700; }
+        .price-final-value { font-size:56px; font-weight:900; color:var(--gold); line-height:1; }
+
+        /* ===== GARANTIA ===== */
+        .guarantee-section { background:var(--bg-secondary); }
+        .guarantee-card { background:var(--gradient-card); border:1px solid rgba(16,185,129,0.22); border-radius:var(--radius-xl); padding:52px 48px; text-align:center; position:relative; overflow:hidden; }
+        .guarantee-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--green),#059669); }
+        .guarantee-icon { font-size:64px; margin-bottom:20px; display:block; }
+        .guarantee-title { font-size:30px; font-weight:800; margin-bottom:16px; }
+        .guarantee-text { font-size:16px; color:var(--text-secondary); line-height:1.9; max-width:600px; margin:0 auto; }
+
+        /* ===== FAQ ===== */
+        .faq-section { background:var(--bg-primary); }
+        .faq-list { display:flex; flex-direction:column; gap:11px; margin-top:32px; }
+        .faq-item { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-md); overflow:hidden; }
+        .faq-question { width:100%; background:none; border:none; padding:22px 24px; display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-family:'Inter',sans-serif; font-size:15px; font-weight:600; color:var(--white); text-align:left; gap:16px; transition:color .3s; }
+        .faq-question:hover { color:var(--gold); }
+        .faq-arrow { color:var(--gold); font-size:18px; flex-shrink:0; transition:transform .3s; }
+        .faq-item.open .faq-arrow { transform:rotate(180deg); }
+        .faq-answer { display:none; padding:20px 24px; font-size:15px; color:var(--text-secondary); line-height:1.8; border-top:1px solid var(--border); }
+        .faq-item.open .faq-answer { display:block; }
+
+        /* ===== CTA FINAL ===== */
+        .final-cta { background:var(--bg-secondary); position:relative; overflow:hidden; }
+        .final-cta::before { content:''; position:absolute; bottom:-200px; left:50%; transform:translateX(-50%); width:800px; height:800px; background:radial-gradient(circle,rgba(245,166,35,0.09) 0%,transparent 70%); pointer-events:none; }
+        .urgency-bar { background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.22); border-radius:var(--radius-md); padding:16px 24px; display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:36px; font-size:15px; font-weight:600; flex-wrap:wrap; text-align:center; }
+        .urgency-bar .timer-val { color:var(--gold); font-weight:900; font-size:22px; }
+        .final-cta-card { background:var(--gradient-card); border:1px solid var(--border-gold); border-radius:var(--radius-xl); padding:64px 52px; text-align:center; }
+        .final-cta-title { font-size:clamp(22px,3.5vw,44px); font-weight:900; line-height:1.15; margin-bottom:18px; }
+        .final-cta-sub { font-size:17px; color:var(--text-secondary); line-height:1.9; max-width:580px; margin:0 auto 36px; }
+        .check-list { list-style:none; display:flex; flex-direction:column; gap:12px; margin:0 auto 40px; max-width:480px; text-align:left; }
+        .check-list li { display:flex; align-items:flex-start; gap:12px; font-size:15px; color:var(--text-secondary); line-height:1.65; }
+        .check-list li::before { content:'✓'; color:var(--green); font-weight:900; font-size:15px; flex-shrink:0; margin-top:2px; }
+
+        /* ===== P.S. ===== */
+        .ps-section { background:var(--bg-primary); padding:52px 0; }
+        .ps-card { background:var(--bg-card); border-left:3px solid var(--gold); border-radius:0 var(--radius-md) var(--radius-md) 0; padding:24px 32px; font-size:15px; color:var(--text-secondary); line-height:1.9; margin-bottom:16px; }
+        .ps-card strong { color:var(--white); }
+        .ps-label { font-weight:900; color:var(--gold); margin-right:8px; font-size:16px; }
+
+        /* ===== RODAPÉ ===== */
+        footer { background:var(--bg-primary); border-top:1px solid var(--border); padding:32px 0; text-align:center; font-size:13px; color:var(--text-muted); }
+        footer a { color:var(--text-muted); text-decoration:underline; }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 768px) {
+            section { padding:56px 0; }
+            .story-card, .guarantee-card, .final-cta-card { padding:28px 20px; }
+            .two-worlds, .demo-grid, .p3-grid, .testimonials-grid { grid-template-columns:1fr; }
+            .proof-bar-inner { gap:24px; }
+            .offer-item { flex-direction:column; align-items:flex-start; }
+            .price-final-value { font-size:44px; }
+            .hero-proof { flex-direction:column; text-align:center; }
+            .final-cta-card { padding:36px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- BANNER -->
+<div class="top-banner">
+    ⏳ Preço de lançamento: <span class="badge">R$47</span> — Apenas nas próximas <span class="badge">72 horas</span> — Depois volta para R$97
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════ -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-eyebrow">Professoras do Ensino Fundamental — 847 usando agora</div>
+
+        <p class="hero-pre">
+            Se você passou mais de uma hora criando plano de aula nesse domingo —<br>
+            o que você vai ler agora vai te irritar um pouco. E vai mudar tudo.
+        </p>
+
+        <h1>A Professora ao Lado da Sua Escola<br>
+        <span class="gradient-text">Já Sabe o Que Você Ainda Não Sabe.</span></h1>
+
+        <h2>Ela Usa o Mesmo ChatGPT Que Você Usou.<br>
+        <span class="text-gold">Só Sabe o Que Pedir Para Ele.</span></h2>
+
+        <h3>Agora Você Também Vai Saber. Por R$47.</h3>
+
+        <p class="hero-sub">
+            O ebook que ensina o método — e o pack com <strong style="color:var(--gold)">200 prompts prontos para copiar e colar</strong> que professoras do Ensino Fundamental estão usando para criar planos de aula completos, com BNCC, em menos de 15 minutos. Sem experiência com tecnologia. Sem inglês. Sem nada além de saber usar um chat.
+        </p>
+
+        <div class="cta-wrapper">
+            <a href="https://pay.hotmart.com/N105139073O" class="btn-primary pulse">
+                Quero o Ebook + 200 Prompts — R$47
+            </a>
+            <span class="btn-micro">🔒 Hotmart · Acesso imediato · Garantia de 7 dias sem perguntas</span>
+        </div>
+
+        <!-- Mini-prova logo abaixo do CTA principal -->
+        <div class="hero-proof">
+            <div class="hero-proof-avatar">C</div>
+            <div>
+                <div class="hero-proof-stars">★★★★★</div>
+                <p class="hero-proof-text">
+                    "Trabalhei 11 anos como professora e achei que nunca ia entender de IA. Na primeira tarde com o pack, fiz <strong>5 planos de aula completos em 2 horas.</strong> Fechei o computador às 15h de sábado pela primeira vez desde que me lembro."
+                </p>
+                <div class="hero-proof-author">— Carla M., Professora de Português · 4º ano · São Paulo</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROOF BAR -->
+<div class="proof-bar">
+    <div class="container">
+        <div class="proof-bar-inner">
+            <div class="proof-item"><span class="proof-number">847+</span><span class="proof-label">professoras usando</span></div>
+            <div class="proof-item"><span class="proof-number">15 min</span><span class="proof-label">plano completo com BNCC</span></div>
+            <div class="proof-item"><span class="proof-number">200</span><span class="proof-label">prompts prontos para copiar</span></div>
+            <div class="proof-item"><span class="proof-number">7 dias</span><span class="proof-label">garantia total · sem perguntas</span></div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     HISTÓRIA: AS DUAS PROFESSORAS
+═══════════════════════════════════════════════ -->
+<section class="story-section">
+    <div class="container">
+        <span class="section-label">📖 Um domingo. Duas professoras. Uma diferença.</span>
+        <h2 class="section-title">São Paulo. Domingo. <span class="text-gold">22h47.</span></h2>
+
+        <div class="story-card">
+            <div class="story-tag">📍 O mesmo bairro. A mesma semana de provas. Escolas a 400 metros uma da outra.</div>
+            <div class="story-body">
+
+                <div class="two-worlds">
+                    <div class="world-card dark">
+                        <div class="world-time dark">⏰ 22h47 — Professora A</div>
+                        <div class="world-text">Tela do computador aberta. Terceiro plano de aula do dia. Filha dormiu sem abraço de boa noite. Marido já foi dormir. A sensação de nunca terminar, de domingo que virou segunda sem que ela percebesse. De novo.</div>
+                    </div>
+                    <div class="world-card light">
+                        <div class="world-time light">☀️ 15h30 — Professora B</div>
+                        <div class="world-text">Computador fechado. Cinco planos de aula prontos. Com BNCC. Com sequência didática. Com avaliação. No parque com a filha. Tomando café com o marido às 17h. Dormindo às 22h sem culpa.</div>
+                    </div>
+                </div>
+
+                <p>As duas têm o mesmo grau de instrução. As duas amam o que fazem. As duas têm turmas grandes, laudos, relatórios, provas pra corrigir, família esperando.<br><strong style="color:var(--white)">Uma diferença separa as duas professoras:</strong> a professora B sabe exatamente o que digitar no ChatGPT.</p>
+
+                <div class="story-quote">
+                    "Não é que ela seja mais inteligente, mais jovem ou mais tech. É que alguém mostrou para ela as perguntas certas — e ninguém tinha mostrado para mim."
+                    <div style="font-size:14px;color:var(--text-muted);margin-top:8px;font-style:normal;">— Renata S., professora de Ciências · 5º ano · após descobrir o método</div>
+                </div>
+
+                <p>A professora A sou eu. Sou você. Somos qualquer professora que já abriu o ChatGPT cheia de esperança, digitou "me ajude a criar um plano de aula" — e recebeu três parágrafos genéricos inúteis.</p>
+
+                <p>Não era o ChatGPT que estava errado. <span class="story-hl">Era o que a gente digitava para ele.</span> A IA é tão boa quanto a instrução que recebe. E sem o método certo, ela vai sempre gerar lixo genérico.</p>
+
+                <p class="story-gold">Este ebook ensina o método. Os 200 prompts são o método em ação — prontos para usar hoje.</p>
+
+                <p>Você não precisa aprender nada de tecnologia. Não precisa de inglês. Não precisa pagar pelo ChatGPT Plus. Só precisa copiar, colar os dados da sua aula — série, conteúdo, quantidade de alunos — e apertar Enter.</p>
+
+                <p><span class="story-hl">Em menos de 15 minutos, você terá um plano de aula completo. Com código BNCC correto. Com sequência didática em 3 momentos. Com avaliação formativa. Pronto para imprimir.</span></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     DOR
+═══════════════════════════════════════════════ -->
+<section class="pain-section">
+    <div class="container">
+        <span class="section-label">😔 Você já se viu aqui?</span>
+        <h2 class="section-title">Cada uma dessas situações <span class="text-gold">rouba horas da sua vida</span> toda semana.</h2>
+        <div class="pain-grid">
+            <div class="pain-card">
+                <div class="pain-icon">🌙</div>
+                <p class="pain-text">Domingo à noite no computador enquanto a família dorme — criando o plano de aula que deveria ter ficado pronto no sábado</p>
+            </div>
+            <div class="pain-card">
+                <div class="pain-icon">💻</div>
+                <p class="pain-text">Tentou o ChatGPT, recebeu texto genérico que não serve pra nada, e fechou o computador achando que IA não é pra você</p>
+            </div>
+            <div class="pain-card">
+                <div class="pain-icon">📋</div>
+                <p class="pain-text">Relatórios descritivos que levam dias inteiros — 15 minutos por aluno × 30 alunos = uma semana da sua vida por bimestre</p>
+            </div>
+            <div class="pain-card">
+                <div class="pain-icon">🧩</div>
+                <p class="pain-text">Aluno com laudo que precisa de atividade adaptada — e mais 1 a 2 horas do seu dia para criar algo que sirva de verdade</p>
+            </div>
+            <div class="pain-card">
+                <div class="pain-icon">🔍</div>
+                <p class="pain-text">BNCC que você precisa incluir mas leva 20 a 40 minutos caçando o código certo no documento oficial de 600 páginas</p>
+            </div>
+            <div class="pain-card">
+                <div class="pain-icon">📱</div>
+                <p class="pain-text">Mensagem difícil de pai que você não sabe como responder — e 30 minutos escolhendo cada palavra com cuidado</p>
+            </div>
+        </div>
+        <div class="pain-callout">
+            Some tudo isso. <strong style="color:var(--white)">São 12 a 16 horas por semana em burocracia.</strong><br>
+            Isso é 480 a 640 horas por ano letivo. <strong style="color:var(--gold)">60 a 80 dias da sua vida.</strong><br>
+            Todo ano. Desde que você virou professora. <strong style="color:var(--white)">A IA resolve cada uma dessas tarefas — com o prompt certo.</strong>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     DEMO: O QUE MUDA COM O PROMPT CERTO
+═══════════════════════════════════════════════ -->
+<section class="demo-section">
+    <div class="container">
+        <span class="section-label">⚡ Na prática</span>
+        <h2 class="section-title">Você Já Tem a Ferramenta.<br><span class="text-gold">Só Faltava Isto.</span></h2>
+        <p style="color:var(--text-secondary);font-size:16px;line-height:1.8;margin-bottom:8px;">É o mesmo ChatGPT gratuito. O que muda é o que você digita nele.</p>
+
+        <div class="demo-grid">
+            <div class="demo-card before">
+                <div class="demo-label before">✗ Como você tentou — resultado inútil</div>
+                <div class="demo-prompt">"Crie um plano de aula de Português para o 4º ano sobre interpretação de texto."</div>
+                <div class="demo-result bad">
+                    Resultado: texto genérico de 3 parágrafos. Sem BNCC. Sem sequência didática. Sem avaliação. Linguagem de livro universitário. Você passa mais 90 minutos reescrevendo do zero — ou joga fora e faz você mesma.
+                </div>
+                <div class="demo-timer bad">⏱️ 5 min gerando + 90 min corrigindo = 95 minutos perdidos</div>
+            </div>
+            <div class="demo-card after">
+                <div class="demo-label after">✓ Com o Prompt do Pack — resultado pronto</div>
+                <div class="demo-prompt">Aja como especialista em alfabetização e letramento para os Anos Iniciais do Ensino Fundamental...
+
+DADOS: 4º ano · 28 alunos · Habilidade BNCC EF04LP07
+
+ESTRUTURA OBRIGATÓRIA:
+1. Objetivos (geral + 3 específicos)
+2. Sequência: exploração / desenvolvimento / sistematização
+3. Atividade principal com passo a passo
+4. Avaliação formativa com critérios observáveis
+[instrução completa — 260 palavras]</div>
+                <div class="demo-result good">
+                    Resultado: plano completo com código BNCC correto, sequência didática em 3 momentos, atividade detalhada, critérios de avaliação formativa. Pronto para imprimir. Pequenos ajustes em 5 minutos.
+                </div>
+                <div class="demo-timer good">⏱️ 3 min preenchendo + 8 min gerando + 4 min ajustando = menos de 15 minutos</div>
+            </div>
+        </div>
+
+        <div class="p3-grid">
+            <div class="p3-card">
+                <div class="p3-number">1</div>
+                <div class="p3-title">Especialista Definido</div>
+                <div class="p3-desc">A IA age como pedagogo especialista na sua disciplina — não como robô genérico</div>
+            </div>
+            <div class="p3-card">
+                <div class="p3-number">2</div>
+                <div class="p3-title">Dados da Sua Aula</div>
+                <div class="p3-desc">Série, conteúdo e BNCC. Com esses 3 dados, o resultado é específico para a sua realidade</div>
+            </div>
+            <div class="p3-card">
+                <div class="p3-number">3</div>
+                <div class="p3-title">Estrutura Obrigatória</div>
+                <div class="p3-desc">A IA sabe exatamente o que entregar: sequência, avaliação, critérios — tudo definido no prompt</div>
+            </div>
+        </div>
+
+        <p style="text-align:center;color:var(--text-secondary);font-size:16px;line-height:1.85;max-width:680px;margin:0 auto;">
+            Os 200 prompts do pack <strong style="color:var(--white)">já têm tudo isso pronto.</strong><br>
+            Você só preenche o que está entre colchetes — a série, o conteúdo, a turma —<br>
+            e cola no ChatGPT gratuito. <strong style="color:var(--gold)">Literalmente copiar e colar.</strong>
+        </p>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     DEPOIMENTOS
+═══════════════════════════════════════════════ -->
+<section class="testimonials-section">
+    <div class="container">
+        <span class="section-label">💬 Professoras que já cruzaram para o outro lado</span>
+        <h2 class="section-title">Elas eram a professora A.<br><span class="text-gold">Agora são a professora B.</span></h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Levava <strong>2 horas por plano</strong> e ainda achava que estava sendo lenta. Semana passada fiz os 5 planos do bimestre numa tarde. <strong>Saí às 15h de sábado.</strong> Isso nunca tinha acontecido na minha carreira."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">C</div>
+                    <div><div class="author-name">Carla M.</div><div class="author-role">Portuguesa · 4º ano · 11 anos de carreira</div></div>
+                </div>
+                <span class="testimonial-tag">⏱️ De 2h para menos de 15 min por plano</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Tentei o ChatGPT sozinha. Achei que não era pra mim. <strong>Com o método do ebook + os prompts prontos, o primeiro plano levou menos de 15 minutos.</strong> Fiquei olhando pra tela sem acreditar. Era melhor do que eu teria feito em 2 horas."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">M</div>
+                    <div><div class="author-name">Mariana F.</div><div class="author-role">História · 4º e 5º ano · 44 anos · nunca havia usado IA</div></div>
+                </div>
+                <span class="testimonial-tag">✓ Primeira vez — resultado imediato</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Os <strong>40 relatórios descritivos do bimestre</strong> me tomavam uma semana de noites. Com os prompts de relatório, <strong>fiz tudo em uma tarde.</strong> A supervisora leu e elogiou a qualidade. Ela não sabia que a IA tinha ajudado."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">R</div>
+                    <div><div class="author-name">Renata S.</div><div class="author-role">Ciências · 5º ano · 3 turmas</div></div>
+                </div>
+                <span class="testimonial-tag">⏱️ 40 relatórios em uma tarde</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     OFERTA
+═══════════════════════════════════════════════ -->
+<section class="offer-section">
+    <div class="container">
+        <span class="section-label">🎁 O que você recebe</span>
+        <h2 class="section-title">O método + a ferramenta.<br><span class="text-gold">Tudo que você precisa para mudar hoje.</span></h2>
+
+        <div class="offer-items">
+
+            <!-- PRODUTO PRINCIPAL -->
+            <div class="offer-item main-product">
+                <div class="offer-item-icon">📘</div>
+                <div class="offer-item-content">
+                    <div class="offer-item-badge">Produto Principal</div>
+                    <div class="offer-item-name">Ebook: Professor na Era da IA — Guia Prático para o Ensino Fundamental</div>
+                    <div class="offer-item-desc">O método completo em linguagem simples e sem jargão técnico. Do básico "como abrir o ChatGPT" até a criação de planos de aula, provas e relatórios em minutos. Exemplos reais por disciplina, erros mais comuns e como corrigir resultados que não ficaram perfeitos. Para quem nunca usou IA — e também para quem tentou e desistiu.</div>
+                </div>
+                <div class="offer-item-price">R$67</div>
+            </div>
+
+            <!-- BÔNUS: 200 PROMPTS -->
+            <div class="offer-item bonus">
+                <div class="offer-item-icon">🤖</div>
+                <div class="offer-item-content">
+                    <div class="offer-item-badge">🎁 Bônus Exclusivo — Incluso Nessa Oferta</div>
+                    <div class="offer-item-name">Pack 200 Prompts Prontos para Copiar e Colar</div>
+                    <div class="offer-item-desc">
+                        200 prompts estruturados para as 8 principais disciplinas do Ensino Fundamental (Português, Matemática, Ciências, História, Geografia, Artes, Ed. Física e Inglês) × 5 categorias por disciplina (Plano de Aula, Prova, Exercício, Gabarito e Atividade Criativa). Cada prompt já tem a instrução completa, a estrutura obrigatória e os parâmetros BNCC. Você só preenche os dados da sua aula e cola no ChatGPT.
+                        <strong style="color:var(--purple-light);display:block;margin-top:6px;">Este é o bônus que vai usar todos os dias.</strong>
+                    </div>
+                </div>
+                <div class="offer-item-price">R$97</div>
+            </div>
+
+        </div>
+
+        <div class="price-box">
+            <div class="price-row"><span>Ebook Professor na Era da IA</span><span style="text-decoration:line-through;color:var(--text-muted)">R$67</span></div>
+            <div class="price-row"><span>Pack 200 Prompts Prontos (bônus)</span><span style="text-decoration:line-through;color:var(--text-muted)">R$97</span></div>
+            <div class="price-row" style="color:var(--text-muted);font-size:13px;"><span>Valor total</span><span style="text-decoration:line-through;">R$164</span></div>
+            <div class="price-final">
+                <div>
+                    <div class="price-final-label">Você paga hoje</div>
+                    <div style="font-size:13px;color:var(--text-muted);margin-top:2px;">pagamento único · acesso imediato</div>
+                </div>
+                <div class="price-final-value">R$47</div>
+            </div>
+            <div style="margin-top:30px;" class="cta-wrapper">
+                <a href="https://pay.hotmart.com/N105139073O" class="btn-primary pulse">
+                    Quero o Ebook + 200 Prompts por R$47
+                </a>
+                <span class="btn-micro">🔒 Hotmart · Cartão, Pix ou Boleto · Parcelamento disponível</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     GARANTIA
+═══════════════════════════════════════════════ -->
+<section class="guarantee-section">
+    <div class="container">
+        <div class="guarantee-card">
+            <span class="guarantee-icon">🛡️</span>
+            <h2 class="guarantee-title">Garantia <span class="text-green">Domingo Livre</span> — 7 Dias</h2>
+            <p class="guarantee-text">
+                Faça o download agora. Abra o ebook, leia os primeiros 3 capítulos — leva 20 minutos. Depois abra o ChatGPT gratuito, copie qualquer prompt do pack, preencha os dados da sua aula e aperte Enter.<br><br>
+                Se em 30 minutos você não tiver um plano de aula completo com BNCC na sua frente — <strong style="color:var(--white)">devolvo cada centavo sem perguntas, sem burocracia, sem precisar me explicar.</strong><br><br>
+                Você tem <strong style="color:var(--white)">7 dias para testar com zero risco.</strong> Não tem desculpa para não tentar.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     FAQ
+═══════════════════════════════════════════════ -->
+<section class="faq-section">
+    <div class="container">
+        <span class="section-label">❓ Dúvidas frequentes</span>
+        <h2 class="section-title">O que professoras <span class="text-gold">sempre perguntam</span></h2>
+        <div class="faq-list">
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Preciso saber usar IA ou ter conhecimento de tecnologia?
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">Não. O ebook começa do absoluto zero — incluindo como criar conta no ChatGPT gratuito, como navegar na interface e como copiar e colar textos. O pack foi testado por professoras que nunca tinham usado IA antes. Se você sabe usar o WhatsApp, você consegue usar esse método.</div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Precisa pagar pelo ChatGPT? Tem custo mensal?
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">Não. Os prompts foram testados e funcionam perfeitamente no ChatGPT gratuito (chat.openai.com). Você não precisa assinar nenhum plano pago. O único custo é o valor único de R$47 do ebook + pack — sem mensalidade, sem nada extra.</div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Os planos gerados realmente incluem BNCC correto?
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">Sim. Cada prompt já instrui a IA para buscar e incluir os códigos de habilidade BNCC correspondentes à série e ao conteúdo que você informa. O ebook também ensina como verificar se o código gerado está correto — e o que fazer se precisar ajustar.</div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Menos de 15 minutos é real ou é exagero de marketing?
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">Menos de 15 minutos é o tempo médio reportado pelas professoras que já usam o pack regularmente — inclui copiar o prompt, preencher os dados, aguardar a geração (1 a 2 minutos) e fazer os pequenos ajustes finais. Na primeira vez pode levar um pouco mais enquanto você se acostuma. Da segunda em diante, muitas relatam menos de 10 minutos.</div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Funciona para professoras mais velhas, que não cresceram com tecnologia?
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">Funciona especialmente bem para elas — porque o método foi desenhado para eliminar qualquer barreira técnica. Das 847 professoras usando, mais de 60% têm mais de 40 anos. A mais velha tem 58 anos e usa o pack todos os dias. O que importa é saber copiar e colar — e isso você certamente sabe.</div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    E se o resultado não sair bom? O que faço?
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">O ebook inclui um capítulo específico de "ajustes" — 8 comandos simples para quando o resultado precisar de correção. Por exemplo, se o plano ficou muito simples: "Aumente a complexidade das atividades para alunos de [série] com perfil [descreva]." Na grande maioria dos casos, o primeiro resultado já fica 90% pronto.</div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     CTA FINAL
+═══════════════════════════════════════════════ -->
+<section class="final-cta">
+    <div class="container">
+        <div class="urgency-bar">
+            ⚠️ Oferta de lançamento: de R$164 por <span class="timer-val">R$47</span> — válida por apenas 72 horas
+        </div>
+        <div class="final-cta-card">
+            <h2 class="final-cta-title">
+                Daqui a 30 minutos, você pode ter<br>
+                <span class="gradient-text">o primeiro plano de aula pronto.</span>
+            </h2>
+            <p class="final-cta-sub">
+                Não é o próximo bimestre. Não é a próxima semana. É hoje. Em 30 minutos. Com o mesmo ChatGPT que já te devolveu lixo — mas desta vez com as perguntas certas.
+            </p>
+            <ul class="check-list">
+                <li>Ebook completo: do zero ao plano em 30 minutos</li>
+                <li>200 prompts prontos para 8 disciplinas — copiar, colar, preencher, Enter</li>
+                <li>ChatGPT gratuito — sem custo extra, sem mensalidade</li>
+                <li>Sem experiência com IA necessária — testado por quem nunca usou</li>
+                <li>7 dias de garantia total — R$47 de volta sem perguntas</li>
+            </ul>
+            <div class="cta-wrapper">
+                <a href="https://pay.hotmart.com/N105139073O" class="btn-primary pulse">
+                    Quero Ser a Professora B — R$47 Agora
+                </a>
+                <span class="btn-micro">🔒 Pagamento seguro via Hotmart · Acesso imediato ao ebook + pack</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     P.S. — GARY HALBERT STYLE
+═══════════════════════════════════════════════ -->
+<section class="ps-section">
+    <div class="container">
+
+        <div class="ps-card">
+            <span class="ps-label">P.S.</span>
+            <strong>Nesse exato momento, outras professoras estão criando planos de aula usando esses prompts.</strong> Elas vão chegar na segunda-feira descansadas. Você pode ser uma delas a partir de hoje. A única coisa que separa você disso é uma decisão de R$47.
+        </div>
+
+        <div class="ps-card">
+            <span class="ps-label">P.P.S.</span>
+            A garantia é real e automática. Se você não ficou satisfeita por qualquer motivo nos primeiros 7 dias, você entra na Hotmart e clica em "solicitar reembolso". <strong>Sem precisar me contatar, sem precisar se justificar, sem burocracia.</strong> O valor volta integralmente. Eu assumo o risco. Você só ganha.
+        </div>
+
+        <div class="ps-card">
+            <span class="ps-label">P.P.P.S.</span>
+            Em 40 semanas letivas, você vai economizar entre 400 e 600 horas de trabalho burocrático. <strong>Esse tempo não tem preço.</strong> Mas o método que entrega esse tempo custa R$47 por 72 horas. Depois volta para R$97. A decisão mais simples que você vai tomar hoje.
+        </div>
+
+    </div>
+</section>
+
+<!-- RODAPÉ -->
+<footer>
+    <div class="container">
+        <p>© 2026 Professor na Era da IA · Todos os direitos reservados</p>
+        <p style="margin-top:8px;">
+            <a href="#">Política de Privacidade</a> · <a href="#">Termos de Uso</a> · Dúvidas: cr7infor@gmail.com
+        </p>
+    </div>
+</footer>
+
+<script>
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+    });
+});
+
+// Countdown timer (72h a partir do pageload)
+(function() {
+    const KEY = 'landing_v4_deadline';
+    let deadline = localStorage.getItem(KEY);
+    if (!deadline) {
+        deadline = Date.now() + 72 * 60 * 60 * 1000;
+        localStorage.setItem(KEY, deadline);
+    } else {
+        deadline = parseInt(deadline);
+    }
+
+    const timers = document.querySelectorAll('.timer-val');
+
+    function update() {
+        const diff = deadline - Date.now();
+        if (diff <= 0) {
+            timers.forEach(t => t.textContent = 'R$47');
+            return;
+        }
+        const h = Math.floor(diff / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        const str = `R$47 (encerra em ${h}h ${m}m ${s}s)`;
+        timers.forEach(t => t.textContent = str);
+        requestAnimationFrame(update);
+    }
+    update();
+})();
+</script>
+</body>
+</html>
